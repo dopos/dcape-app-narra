@@ -1,6 +1,7 @@
 # narra init Makefile
 # This file included by ../../Makefile
 SHELL               = /bin/bash
+CFG                ?= .env
 
 # Docker image version tested for actual dcape release
 NARRA_VER0         ?= v0.25.0
@@ -28,6 +29,9 @@ NARRA_IMAGE        ?= ghcr.io/dopos/narra
 #- Narra Docker image version
 NARRA_VER          ?= $(NARRA_VER0)
 
+#- dcape root directory
+DCAPE_ROOT         ?= $(DCAPE_ROOT)
+
 # ------------------------------------------------------------------------------
 
 -include $(CFG)
@@ -49,11 +53,13 @@ init:
 	@echo "  Gitea org: $(NARRA_GITEA_ORG)"
 
 ifeq ($(TOKEN),)
-  ifneq ($(findstring $(MAKECMDGOALS),setup),)
+  ifneq ($(findstring $(MAKECMDGOALS),setup oauth2-create),)
     -include $(DCAPE_VAR)/oauth2-token
   endif
 endif
 
-setup:
+setup: oauth2-create
+
+oauth2-create:
 	$(MAKE) -s oauth2-org-create ORG=$(NARRA_GITEA_ORG)
 	$(MAKE) -s oauth2-app-create HOST=$(DCAPE_HOST) URL=/login PREFIX=NARRA
