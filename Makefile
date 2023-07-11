@@ -9,7 +9,7 @@ NARRA_VER0         ?= v0.25.0
 #- Narra: general config
 
 #- Gitea organization for users who has access to private areas
-NARRA_GITEA_ORG    ?= dcape
+NARRA_GITEA_ORG    ?= $(DCAPE_ADMIN_ORG)
 #- Auth service access token: client ID
 NARRA_CLIENT_ID    ?= SET_NARRA_CLIENT_ID_HERE
 #- Auth service access token: key
@@ -48,4 +48,12 @@ init:
 	fi
 	@echo "  Gitea org: $(NARRA_GITEA_ORG)"
 
+ifeq ($(TOKEN),)
+  ifneq ($(findstring $(MAKECMDGOALS),setup),)
+    -include $(DCAPE_VAR)/oauth2-token
+  endif
+endif
+
 setup:
+	$(MAKE) -s oauth2-org-create ORG=$(NARRA_GITEA_ORG)
+	$(MAKE) -s oauth2-app-create HOST=$(DCAPE_HOST) URL=/login PREFIX=NARRA
