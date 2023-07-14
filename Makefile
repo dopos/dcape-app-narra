@@ -4,7 +4,7 @@ SHELL               = /bin/bash
 CFG                ?= .env
 
 # Docker image version tested for actual dcape release
-NARRA_VER0         ?= v0.25.0
+NARRA_VER0         ?= v0.26.0
 
 #- ******************************************************************************
 #- Narra: general config
@@ -38,7 +38,6 @@ DCAPE_ROOT         ?= $(DCAPE_ROOT)
 export
 
 ifdef DCAPE_STACK
-include $(DCAPE_ROOT)/$(CFG)
 include $(DCAPE_ROOT)/Makefile.dcape
 else
 include $(DCAPE_ROOT)/Makefile.app
@@ -53,12 +52,12 @@ init:
 	@echo "  Gitea org: $(NARRA_GITEA_ORG)"
 
 ifeq ($(TOKEN),)
-  ifneq ($(findstring $(MAKECMDGOALS),setup oauth2-create),)
-    -include $(DCAPE_VAR)/oauth2-token
+  ifneq ($(findstring $(MAKECMDGOALS),.setup-before-up oauth2-create),)
+    include $(DCAPE_VAR)/oauth2-token
   endif
 endif
 
-setup: oauth2-create
+.setup-before-up: oauth2-create
 
 oauth2-create:
 	$(MAKE) -s oauth2-org-create ORG=$(NARRA_GITEA_ORG)
