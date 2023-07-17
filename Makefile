@@ -9,6 +9,9 @@ NARRA_VER0         ?= v0.26.0
 #- ******************************************************************************
 #- Narra: general config
 
+#- Gitea URL for auth and repos
+NARRA_GITEA_URL    ?= $(AUTH_URL)
+
 #- Gitea organization for users who has access to private areas
 NARRA_GITEA_ORG    ?= $(DCAPE_ADMIN_ORG)
 #- Auth service access token: client ID
