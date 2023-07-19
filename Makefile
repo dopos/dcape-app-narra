@@ -1,5 +1,7 @@
-# narra init Makefile
-# This file included by ../../Makefile
+## narra Makefile.
+## Used with dcape at ../../
+#:
+
 SHELL               = /bin/bash
 CFG                ?= .env
 
@@ -48,6 +50,7 @@ endif
 
 # ------------------------------------------------------------------------------
 
+# check app version
 init:
 	@if [[ "$$NARRA_VER0" != "$$NARRA_VER" ]] ; then \
 	  echo "Warning: NARRA_VER in dcape ($$NARRA_VER0) differs from yours ($$NARRA_VER)" ; \
@@ -60,8 +63,10 @@ ifeq ($(AUTH_TOKEN),)
   endif
 endif
 
+# setup app
 .setup-before-up: oauth2-create
 
+# create OAuth application credentials
 oauth2-create:
 	$(MAKE) -s oauth2-org-create ORG=$(NARRA_GITEA_ORG)
 	$(MAKE) -s oauth2-app-create HOST=$(DCAPE_HOST) URL=/login PREFIX=NARRA
