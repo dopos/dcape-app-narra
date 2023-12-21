@@ -6,7 +6,7 @@ SHELL               = /bin/bash
 CFG                ?= .env
 
 # Docker image version tested for actual dcape release
-NARRA_VER0         ?= v0.26.0
+NARRA_VER0         ?= v0.26.3
 
 #- ******************************************************************************
 #- Narra: general config
