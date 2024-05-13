@@ -10,8 +10,10 @@
 
 Приложение ядра [dcape](https://github.com/dopos/dcape) для ограничения доступа к приватным ресурсам.
 
+  |
+ --- | ---
  Роль | auth
- Сервис |  [narra](https://github.com/dopos/narra)
+ Сервис | [narra](https://github.com/dopos/narra)
  Docker | [ghcr.io/dopos/narra](https://github.com/dopos/narra/pkgs/container/narra)
  Назначение | сервис OAuth2 авторизации, который разрешает доступ к ресурсу только участникам заданной организации gitea.
 
