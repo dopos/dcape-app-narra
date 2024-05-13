@@ -10,7 +10,7 @@
 
 Приложение ядра [dcape](https://github.com/dopos/dcape) для ограничения доступа к приватным ресурсам.
 
- Роль в dcape | auth
+ Роль | auth
  -- | --
  Приложение |  [narra](https://github.com/dopos/narra)
  Docker | [ghcr.io/dopos/narra](https://github.com/dopos/narra/pkgs/container/narra)
@@ -19,9 +19,21 @@
 Ресурсы dcape с ограниченным доступом:
 
 * [фронтенд **dcape**](html/private) - список развернутых на сервере приложений и сервисов
-* enfist - настройки приложений dcape
-* traefik dasboard
-* статистика использования powerdns
+* [настройки приложений dcape](https://github.com/dopos/dcape-app-enfist)
+* [router](https://github.com/dopos/dcape-app-traefik) dasboard
+* статистика [ns](https://github.com/dopos/dcape-app-powerdns)
+
+## Подключение авторизации к приложениям dcape
+
+docker-compose.yml
+
+```yml
+services:
+  app:
+    labels:
+      - "traefik.http.routers.${APP_TAG}.middlewares=narra" # Require gitea auth
+
+```
 
 ---
 
