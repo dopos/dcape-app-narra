@@ -10,7 +10,7 @@
 
 Приложение ядра [dcape](https://github.com/dopos/dcape) для ограничения доступа к приватным ресурсам.
 
- - | -
+ . | .
  --- | ---
  Роль | auth
  Сервис | [narra](https://github.com/dopos/narra)
