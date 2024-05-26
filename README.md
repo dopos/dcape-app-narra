@@ -1,5 +1,7 @@
 # dcape-app-narra
 
+> Приложение ядра [dcape](https://github.com/dopos/dcape) для ограничения доступа к приватным ресурсам.
+
 [![GitHub Release][1]][2] [![GitHub code size in bytes][3]]() [![GitHub license][4]][5]
 
 [1]: https://img.shields.io/github/release/dopos/dcape-app-narra.svg
@@ -8,16 +10,15 @@
 [4]: https://img.shields.io/github/license/dopos/dcape-app-narra.svg
 [5]: LICENSE
 
-Приложение ядра [dcape](https://github.com/dopos/dcape) для ограничения доступа к приватным ресурсам.
+ Роль в dcape | Сервис | Docker image
+ --- | --- | ---
+ auth | [narra](https://github.com/dopos/narra) | [ghcr.io/dopos/narra](https://github.com/dopos/narra/pkgs/container/narra)
 
- . | .
- --- | ---
- Роль | auth
- Сервис | [narra](https://github.com/dopos/narra)
- Docker | [ghcr.io/dopos/narra](https://github.com/dopos/narra/pkgs/container/narra)
- Назначение | сервис OAuth2 авторизации, который разрешает доступ к ресурсу только участникам заданной организации gitea.
+## Назначение
 
-Ресурсы dcape с ограниченным доступом:
+Сервис OAuth2 авторизации, который разрешает доступ к ресурсу только участникам заданной в настройках организации gitea.
+
+## Ресурсы dcape с ограниченным доступом
 
 * [фронтенд **dcape**](html/private) - список развернутых на сервере приложений и сервисов
 * [настройки приложений dcape](https://github.com/dopos/dcape-app-enfist)
